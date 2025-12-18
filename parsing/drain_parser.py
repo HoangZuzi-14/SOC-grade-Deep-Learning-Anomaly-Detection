@@ -6,24 +6,20 @@ from drain3 import TemplateMiner
 from drain3.template_miner import TemplateMinerConfig
 import os
 
-# Configure logging (optional)
+# Configure logging
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 logger = logging.getLogger(__name__)
 
 
 # Configuration for the TemplateMiner
-# Use default configuration, but you can customize parameters like sim_th, max_children, etc.
 config = TemplateMinerConfig()
 config_file = os.path.join("drain3.ini")
 config.load(config_file)
 config.profiling_enabled = True
 
-# You can load configuration from a file (e.g., drain3.ini) if you have complex masking rules
-# config.load('drain3.ini')
-
 template_miner = TemplateMiner(config=config)
 
-# Specify your log file path
+# Specify log file path
 log_file_path = os.path.join("..", "data","raw", "final_auth_modern.log")
 
 logger.info(f"--- Starting training phase on {log_file_path} ---")
