@@ -2,8 +2,6 @@ import json
 import pickle
 import os
 import argparse
-import pandas as pd
-from collections import Counter
 
 def load_data(input_file):
     print(f"Loading data from {input_file}...")
