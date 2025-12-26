@@ -20,7 +20,7 @@ config.profiling_enabled = True
 template_miner = TemplateMiner(config=config)
 
 # Specify log file path
-log_file_path = os.path.join("..", "data","raw", "final_auth_modern.log")
+log_file_path = os.path.join("..", "ingestion", "full_log.log")
 
 logger.info(f"--- Starting training phase on {log_file_path} ---")
 
