@@ -1,3 +1,6 @@
 drain3==0.9.11
 numpy==2.4.0
 scikit_learn==1.8.0
+
+torch~=2.9.1
+scikit-learn~=1.8.0
