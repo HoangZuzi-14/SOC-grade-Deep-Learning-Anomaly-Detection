@@ -6,7 +6,14 @@ from pathlib import Path
 import torch
 import torch.nn.functional as F
 
-from deeplog_lstm import DeepLogLSTM
+# Import DeepLogLSTM - handle both relative and absolute imports
+try:
+    from .deeplog_lstm import DeepLogLSTM
+except ImportError:
+    try:
+        from model.deeplog_lstm import DeepLogLSTM
+    except ImportError:
+        from deeplog_lstm import DeepLogLSTM
 
 
 @torch.no_grad()

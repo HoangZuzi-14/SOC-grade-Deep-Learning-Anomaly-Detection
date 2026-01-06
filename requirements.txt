@@ -2,3 +2,6 @@ drain3==0.9.11
 numpy==2.4.0
 scikit_learn==1.8.0
 torch==2.9.1
+matplotlib==3.8.0
+seaborn==0.13.0
+pandas==2.2.0
