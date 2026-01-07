@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# local debug scripts
+model/check_checkpointA.py
+
+# venv (nếu có)
+logdl311/
+.venv/
+venv/
