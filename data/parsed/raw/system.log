@@ -1,0 +1,100 @@
+Dec 10 18:24:04 ubuntu-server snapd[1554]: Successfully activated service
+Dec 10 07:41:51 db-host cron[2945]: (root) CMD (/usr/bin/backup.sh)
+Dec 10 16:27:34 db-host containerd[3242]: Container 79213a stopped
+Dec 10 02:36:53 web-frontend kernel[1301]: eth0: Link is Up - 1Gbps/Full - flow control rx/tx
+Dec 10 20:06:48 db-host nginx[8957]: upstream timed out (110: Connection timed out) while connecting to upstream
+Dec 10 23:21:33 web-frontend snapd[9161]: Successfully activated service
+Dec 10 22:45:33 node-01 snapd[5385]: Successfully activated service
+Dec 10 20:41:44 ubuntu-server systemd[5796]: Reached target Multi-User System.
+Dec 10 04:24:30 web-frontend containerd[5954]: Container 965da2 stopped
+Dec 10 18:19:47 web-frontend snapd[5498]: Successfully activated service
+Dec 10 19:18:23 db-host docker[4958]: Health check failed for container 39ddd7
+Dec 10 00:51:23 ubuntu-server NetworkManager[397]: device (eth0): state change: activated -> disconnected
+Dec 10 07:15:11 web-frontend containerd[950]: Container 7f0288 started
+Dec 10 10:03:19 ubuntu-server NetworkManager[2636]: device (eth0): state change: activated -> disconnected
+Dec 10 16:06:29 web-frontend nginx[7239]: worker process 3963 exited with code 0
+Dec 10 16:57:45 ubuntu-server kernel[1759]: CPU0: Core temperature above threshold, cpu clock throttled
+Dec 10 20:45:25 node-01 snapd[4817]: Successfully activated service
+Dec 10 08:28:37 ubuntu-server nginx[6885]: client 192.168.1.48 closed keepalive connection
+Dec 10 10:50:44 node-01 containerd[5333]: Container 9a017e stopped
+Dec 10 03:05:05 db-host docker[5153]: Container 9dc7f6 started
+Dec 10 19:50:19 ubuntu-server dbus-daemon[8621]: Successfully activated service
+Dec 10 11:43:01 ubuntu-server cron[8535]: (admin) CMD (/usr/bin/backup.sh)
+Dec 10 09:45:19 web-frontend docker[1764]: Container aae728 stopped
+Dec 10 07:29:06 node-01 docker[4150]: Container ab36de started
+Dec 10 22:47:32 web-frontend cupsd[5741]: Successfully activated service
+Dec 10 09:13:23 db-host containerd[2759]: Container 290c59 started
+Dec 10 12:01:02 db-host cron[1484]: (root) CMD (/usr/bin/backup.sh)
+Dec 10 21:53:07 web-frontend containerd[3634]: Container d15f13 stopped
+Dec 10 00:45:05 ubuntu-server dbus-daemon[4939]: Successfully activated service
+Dec 10 05:35:40 web-frontend NetworkManager[1938]: device (eth0): state change: activated -> disconnected
+Dec 10 08:22:20 db-host nginx[4309]: client 192.168.1.25 closed keepalive connection
+Dec 10 14:46:01 node-01 kernel[8312]: TCP: request_sock_TCP: Possible SYN flooding on port 22
+Dec 10 02:42:44 web-frontend cron[5964]: (devops) CMD (/usr/bin/backup.sh)
+Dec 10 22:59:19 db-host containerd[9812]: Container 271937 stopped
+Dec 10 07:20:25 web-frontend snapd[7129]: Successfully activated service
+Dec 10 01:21:55 db-host NetworkManager[9015]: device (eth0): state change: activated -> disconnected
+Dec 10 06:28:22 db-host systemd[503]: Started Session 186 of user root.
+Dec 10 17:30:56 db-host dbus-daemon[2413]: Successfully activated service
+Dec 10 07:36:25 ubuntu-server docker[3753]: Container 7f1ba6 stopped
+Dec 10 15:57:26 db-host snapd[9682]: Successfully activated service
+Dec 10 20:29:34 node-01 cron[9918]: (devops) CMD (/usr/bin/backup.sh)
+Dec 10 18:15:54 ubuntu-server snapd[4286]: Successfully activated service
+Dec 10 05:26:06 ubuntu-server containerd[1356]: Health check failed for container a720a7
+Dec 10 08:38:05 web-frontend NetworkManager[2417]: device (eth0): state change: activated -> disconnected
+Dec 10 06:19:02 db-host snapd[8638]: Successfully activated service
+Dec 10 10:09:20 web-frontend NetworkManager[314]: device (eth0): state change: activated -> disconnected
+Dec 10 14:17:24 node-01 containerd[6168]: Container d2f7c8 started
+Dec 10 21:48:51 web-frontend dbus-daemon[6108]: Successfully activated service
+Dec 10 01:58:17 web-frontend cron[4574]: (www-data) CMD (/usr/bin/backup.sh)
+Dec 10 23:10:44 db-host snapd[2038]: Successfully activated service
+Dec 10 05:05:22 db-host cupsd[6873]: Successfully activated service
+Dec 10 20:22:36 ubuntu-server cupsd[3088]: Successfully activated service
+Dec 10 09:52:55 node-01 containerd[3926]: Container 1204fb started
+Dec 10 23:42:52 node-01 docker[2529]: Container 2af9e9 started
+Dec 10 10:15:27 db-host containerd[4425]: Container a8deb3 stopped
+Dec 10 08:35:53 db-host docker[9526]: Container 2e671d started
+Dec 10 21:24:16 ubuntu-server docker[5730]: Container c77e56 stopped
+Dec 10 09:51:54 db-host kernel[4096]: eth0: Link is Up - 1Gbps/Full - flow control rx/tx
+Dec 10 07:09:55 db-host dbus-daemon[9484]: Successfully activated service
+Dec 10 03:42:13 web-frontend dbus-daemon[1368]: Successfully activated service
+Dec 10 15:12:09 node-01 NetworkManager[2045]: device (eth0): state change: activated -> disconnected
+Dec 10 02:08:23 ubuntu-server snapd[5034]: Successfully activated service
+Dec 10 03:56:39 ubuntu-server nginx[4651]: upstream timed out (110: Connection timed out) while connecting to upstream
+Dec 10 07:24:54 node-01 systemd[4375]: Stopping User Manager for UID 1006.
+Dec 10 03:14:52 web-frontend NetworkManager[6297]: device (eth0): state change: activated -> disconnected
+Dec 10 04:07:34 db-host cron[774]: (root) CMD (/usr/bin/backup.sh)
+Dec 10 03:02:17 web-frontend cupsd[8859]: Successfully activated service
+Dec 10 13:05:36 web-frontend cupsd[5450]: Successfully activated service
+Dec 10 23:33:39 ubuntu-server docker[4990]: Container 49886d stopped
+Dec 10 10:49:49 db-host nginx[4373]: client 192.168.1.22 closed keepalive connection
+Dec 10 06:35:16 node-01 nginx[5180]: client 192.168.1.192 closed keepalive connection
+Dec 10 21:37:01 node-01 dbus-daemon[3824]: Successfully activated service
+Dec 10 16:48:10 web-frontend kernel[8876]: EXT4-fs (sda1): mounted filesystem with ordered data mode
+Dec 10 06:49:47 ubuntu-server kernel[3964]: CPU0: Core temperature above threshold, cpu clock throttled
+Dec 10 06:52:55 ubuntu-server cupsd[6341]: Successfully activated service
+Dec 10 16:19:53 db-host nginx[7598]: client 192.168.1.251 closed keepalive connection
+Dec 10 10:07:41 ubuntu-server nginx[7849]: worker process 4555 exited with code 0
+Dec 10 07:44:39 web-frontend kernel[6907]: EXT4-fs (sda1): mounted filesystem with ordered data mode
+Dec 10 03:40:22 node-01 snapd[7782]: Successfully activated service
+Dec 10 08:10:04 db-host kernel[1268]: EXT4-fs (sda1): mounted filesystem with ordered data mode
+Dec 10 08:58:33 web-frontend nginx[5296]: worker process 3159 exited with code 0
+Dec 10 06:17:31 node-01 snapd[3603]: Successfully activated service
+Dec 10 10:14:25 db-host containerd[5976]: Container 333db4 stopped
+Dec 10 10:44:47 node-01 containerd[4928]: Container ea10b7 started
+Dec 10 03:42:32 ubuntu-server kernel[1030]: TCP: request_sock_TCP: Possible SYN flooding on port 22
+Dec 10 19:25:13 db-host cron[1436]: (www-data) CMD (/usr/bin/backup.sh)
+Dec 10 10:30:02 node-01 cron[850]: (www-data) CMD (/usr/bin/backup.sh)
+Dec 10 14:24:56 node-01 dbus-daemon[9215]: Successfully activated service
+Dec 10 07:41:33 ubuntu-server nginx[7280]: worker process 3526 exited with code 0
+Dec 10 19:09:21 node-01 NetworkManager[7377]: device (eth0): state change: activated -> disconnected
+Dec 10 14:59:04 node-01 cupsd[4328]: Successfully activated service
+Dec 10 13:46:25 ubuntu-server snapd[9815]: Successfully activated service
+Dec 10 05:48:04 web-frontend NetworkManager[5203]: device (eth0): state change: activated -> disconnected
+Dec 10 06:45:43 ubuntu-server containerd[6692]: Container e36d5a started
+Dec 10 22:43:04 web-frontend NetworkManager[3627]: device (eth0): state change: activated -> disconnected
+Dec 10 04:30:57 ubuntu-server NetworkManager[2891]: device (eth0): state change: activated -> disconnected
+Dec 10 06:52:09 web-frontend dbus-daemon[9375]: Successfully activated service
+Dec 10 02:52:35 db-host snapd[4479]: Successfully activated service
+Dec 10 09:11:28 web-frontend nginx[3315]: client 192.168.1.235 closed keepalive connection
+Dec 10 11:10:35 ubuntu-server docker[1821]: Health check failed for container 50083c
