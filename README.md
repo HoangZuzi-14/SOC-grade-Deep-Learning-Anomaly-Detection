@@ -84,7 +84,6 @@ soc-log-anomaly/
 ├── notebook/
 │   └── analysis.ipynb       # Comprehensive pipeline analysis notebook
 │
-├── utils.py
 ├── requirements.txt
 └── README.md
 ```
