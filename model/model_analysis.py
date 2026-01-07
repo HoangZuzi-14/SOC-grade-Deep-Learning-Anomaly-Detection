@@ -46,9 +46,6 @@ def print_model_summary(model: nn.Module, input_size: Tuple[int, ...] = (64, 5))
         model: PyTorch model
         input_size: Input tensor size (batch_size, window_size)
     """
-    print("=" * 80)
-    print("DEEP LEARNING MODEL SUMMARY")
-    print("=" * 80)
     
     # Model architecture
     print("\n[ARCHITECTURE]")
@@ -89,7 +86,6 @@ def print_model_summary(model: nn.Module, input_size: Tuple[int, ...] = (64, 5))
     except Exception as e:
         print(f"  Error: {e}")
     
-    print("=" * 80)
 
 
 def visualize_embeddings(model: DeepLogLSTM, num_labels: int, save_path: Optional[str] = None, 
