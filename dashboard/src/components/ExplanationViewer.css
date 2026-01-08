@@ -1,0 +1,205 @@
+.explanation-viewer {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.explanation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 0.5rem;
+}
+
+.explanation-header h3 {
+  margin: 0;
+  color: #333;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.btn-close:hover {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.explanation-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.explanation-controls label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.explanation-controls select {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.explanation-controls button {
+  padding: 0.5rem 1rem;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.explanation-controls button:hover:not(:disabled) {
+  background: #5568d3;
+}
+
+.explanation-controls button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  padding: 1rem;
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.explanation-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.explanation-summary {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.explanation-summary h4 {
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.summary-item:last-child {
+  border-bottom: none;
+}
+
+.feature-importance {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.feature-importance h4 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.importance-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.importance-item {
+  padding: 0.75rem;
+  background: white;
+  border-radius: 4px;
+  border-left: 4px solid #667eea;
+}
+
+.importance-item.positive {
+  border-left-color: #4caf50;
+}
+
+.importance-item.negative {
+  border-left-color: #f44336;
+}
+
+.importance-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.importance-bar {
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.25rem;
+}
+
+.importance-fill {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.importance-value {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: right;
+}
+
+.top-predictions {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.top-predictions h4 {
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+.top-predictions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.top-predictions li {
+  padding: 0.5rem 0.75rem;
+  background: white;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  border-left: 3px solid #667eea;
+  font-family: 'Courier New', monospace;
+}

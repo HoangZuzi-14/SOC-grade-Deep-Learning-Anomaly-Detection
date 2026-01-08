@@ -1,0 +1,34 @@
+Jan  8 18:00:01 server sshd[10001]: Accepted password for user1 from 10.0.0.5 port 51111 ssh2
+Jan  8 18:00:05 server sshd[10002]: Accepted password for user2 from 10.0.0.6 port 51112 ssh2
+Jan  8 18:00:09 server sshd[10003]: Accepted password for user3 from 10.0.0.7 port 51113 ssh2
+Jan  8 18:00:13 server sshd[10004]: Failed password for user1 from 10.0.0.5 port 51114 ssh2
+Jan  8 18:00:17 server sshd[10005]: Accepted password for user1 from 10.0.0.5 port 51115 ssh2
+Jan  8 18:00:21 server sshd[10006]: Accepted password for user2 from 10.0.0.6 port 51116 ssh2
+Jan  8 18:00:25 server sshd[10007]: Accepted password for user3 from 10.0.0.7 port 51117 ssh2
+Jan  8 18:00:29 server sshd[10008]: Failed password for user2 from 10.0.0.6 port 51118 ssh2
+Jan  8 18:00:33 server sshd[10009]: Accepted password for user2 from 10.0.0.6 port 51119 ssh2
+Jan  8 18:00:37 server sshd[10010]: Accepted password for user1 from 10.0.0.5 port 51120 ssh2
+Jan  8 18:00:41 server sshd[10011]: Accepted password for user3 from 10.0.0.7 port 51121 ssh2
+Jan  8 18:00:45 server sshd[10012]: Accepted password for user2 from 10.0.0.6 port 51122 ssh2
+Jan  8 18:00:49 server sshd[10013]: Accepted password for user1 from 10.0.0.5 port 51123 ssh2
+Jan  8 18:00:53 server sshd[10014]: Accepted password for user3 from 10.0.0.7 port 51124 ssh2
+Jan  8 18:00:57 server sshd[10015]: Failed password for user3 from 10.0.0.7 port 51125 ssh2
+Jan  8 18:01:01 server sshd[10016]: Accepted password for user1 from 10.0.0.5 port 51126 ssh2
+Jan  8 18:01:05 server sshd[10017]: Accepted password for user2 from 10.0.0.6 port 51127 ssh2
+Jan  8 18:01:09 server sshd[10018]: Accepted password for user3 from 10.0.0.7 port 51128 ssh2
+Jan  8 18:01:13 server sshd[10019]: Accepted password for user1 from 10.0.0.5 port 51129 ssh2
+Jan  8 18:01:17 server sshd[10020]: Accepted password for user2 from 10.0.0.6 port 51130 ssh2
+Jan  8 18:01:21 server sshd[10021]: Accepted password for user3 from 10.0.0.7 port 51131 ssh2
+Jan  8 18:05:01 server sshd[20001]: Failed password for invalid user admin from 185.220.101.45 port 60001 ssh2
+Jan  8 18:05:03 server sshd[20002]: Failed password for invalid user admin from 185.220.101.45 port 60002 ssh2
+Jan  8 18:05:05 server sshd[20003]: Failed password for invalid user admin from 185.220.101.45 port 60003 ssh2
+Jan  8 18:05:07 server sshd[20004]: Failed password for invalid user admin from 185.220.101.45 port 60004 ssh2
+Jan  8 18:05:09 server sshd[20005]: Failed password for invalid user admin from 185.220.101.45 port 60005 ssh2
+Jan  8 18:05:11 server sshd[20006]: Failed password for invalid user admin from 185.220.101.45 port 60006 ssh2
+Jan  8 18:05:13 server sshd[20007]: Failed password for invalid user admin from 185.220.101.45 port 60007 ssh2
+Jan  8 18:05:15 server sshd[20008]: Failed password for invalid user admin from 185.220.101.45 port 60008 ssh2
+Jan  8 18:05:17 server sshd[20009]: Failed password for invalid user admin from 185.220.101.45 port 60009 ssh2
+Jan  8 18:05:19 server sshd[20010]: Failed password for invalid user admin from 185.220.101.45 port 60010 ssh2
+Jan  8 18:06:01 server sshd[30001]: Accepted password for user1 from 10.0.0.5 port 52001 ssh2
+Jan  8 18:06:05 server sshd[30002]: Accepted password for user2 from 10.0.0.6 port 52002 ssh2
+Jan  8 18:06:09 server sshd[30003]: Accepted password for user3 from 10.0.0.7 port 52003 ssh2

@@ -1,0 +1,147 @@
+.stats-panel {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-height: none;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.stats-panel h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #333;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 0.5rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 4px solid #667eea;
+  min-width: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.stat-card.severity-high {
+  border-left-color: #f44336;
+}
+
+.stat-card.severity-med {
+  border-left-color: #ff9800;
+}
+
+.stat-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.stat-info {
+  flex: 1;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  line-height: 1.2;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 0.25rem;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.severity-breakdown {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.severity-breakdown h4 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.breakdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.breakdown-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.breakdown-label {
+  min-width: 45px;
+  width: 45px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #666;
+  flex-shrink: 0;
+}
+
+.breakdown-bar {
+  flex: 1;
+  height: 20px;
+  background: #f0f0f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.breakdown-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.breakdown-fill.high {
+  background: #f44336;
+}
+
+.breakdown-fill.med {
+  background: #ff9800;
+}
+
+.breakdown-fill.low {
+  background: #ffc107;
+}
+
+.breakdown-value {
+  min-width: 35px;
+  width: 35px;
+  text-align: right;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #333;
+  flex-shrink: 0;
+}
