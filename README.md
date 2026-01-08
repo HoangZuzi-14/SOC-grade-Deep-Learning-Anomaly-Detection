@@ -548,12 +548,12 @@ docker-compose down
 
 ### CI/CD Badges
 
-Add these badges to your README (update with your repository path):
+Add these badges to your README:
 
 ```markdown
-![CI](https://github.com/your-username/soc-log-anomaly/workflows/CI/badge.svg)
-![Docker](https://github.com/your-username/soc-log-anomaly/workflows/Docker%20Build%20and%20Test/badge.svg)
-![Codecov](https://codecov.io/gh/your-username/soc-log-anomaly/branch/main/graph/badge.svg)
+![CI](https://github.com/HoangZuzi-14/soc-log-anomaly/workflows/CI/badge.svg)
+![Docker](https://github.com/HoangZuzi-14/soc-log-anomaly/workflows/Docker%20Build%20and%20Test/badge.svg)
+![Codecov](https://codecov.io/gh/HoangZuzi-14/soc-log-anomaly/branch/main/graph/badge.svg)
 ```
 
 ### Configuration Files
