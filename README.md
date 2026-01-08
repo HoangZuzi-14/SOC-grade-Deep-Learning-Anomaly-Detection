@@ -443,7 +443,135 @@ python evaluation/dl_metrics.py \
 
 ---
 
-## 11. Key Features
+## 11. CI/CD Pipeline
+
+This project includes a comprehensive CI/CD pipeline using GitHub Actions for automated testing, linting, security scanning, and Docker builds.
+
+### CI/CD Workflows
+
+#### 1. Continuous Integration (`.github/workflows/ci.yml`)
+
+The CI workflow runs on every push and pull request:
+
+- **Testing**: Runs pytest tests on multiple Python versions (3.9, 3.10, 3.11)
+  - Unit tests
+  - Integration tests
+  - Code coverage reporting with Codecov
+- **Linting**: Code quality checks
+  - Flake8 for style and error checking
+  - Black for code formatting
+  - isort for import sorting
+- **Security Scanning**:
+  - Bandit for security vulnerability detection
+  - Safety for dependency vulnerability checking
+
+#### 2. Docker Build and Test (`.github/workflows/docker.yml`)
+
+The Docker workflow validates container builds:
+
+- **API Image Build**: Builds and tests the API Docker image
+- **Dashboard Image Build**: Builds the dashboard Docker image
+- **Docker Compose Test**: Full integration test with docker-compose
+  - Builds all services
+  - Starts containers
+  - Tests API health endpoints
+  - Validates container health checks
+- **Image Publishing**: Automatically pushes images to Docker Hub on version tags
+
+#### 3. Release Workflow (`.github/workflows/release.yml`)
+
+Automated release creation when version tags are pushed:
+- Generates changelog from commits
+- Creates GitHub release with changelog
+
+### Running CI/CD Locally
+
+#### Run Tests
+
+```bash
+# Run all tests
+pytest tests/ -v
+
+# Run with coverage
+pytest tests/ -v --cov=. --cov-report=html
+
+# Run specific test categories
+pytest tests/unit/ -v -m "unit"
+pytest tests/integration/ -v -m "integration"
+```
+
+#### Run Linting
+
+```bash
+# Install linting tools
+pip install flake8 black isort bandit safety
+
+# Run flake8
+flake8 .
+
+# Check code formatting
+black --check .
+
+# Check import sorting
+isort --check-only .
+
+# Format code
+black .
+isort .
+```
+
+#### Run Security Scans
+
+```bash
+# Run Bandit security scan
+bandit -r . -ll
+
+# Check dependencies for vulnerabilities
+safety check
+```
+
+#### Test Docker Builds
+
+```bash
+# Build API image
+docker build -f Dockerfile.api -t soc-anomaly-api:test .
+
+# Build dashboard image
+docker build -f Dockerfile.dashboard -t soc-anomaly-dashboard:test .
+
+# Test with docker-compose
+docker-compose build
+docker-compose up -d
+curl http://localhost:8000/
+docker-compose down
+```
+
+### CI/CD Badges
+
+Add these badges to your README (update with your repository path):
+
+```markdown
+![CI](https://github.com/your-username/soc-log-anomaly/workflows/CI/badge.svg)
+![Docker](https://github.com/your-username/soc-log-anomaly/workflows/Docker%20Build%20and%20Test/badge.svg)
+![Codecov](https://codecov.io/gh/your-username/soc-log-anomaly/branch/main/graph/badge.svg)
+```
+
+### Configuration Files
+
+- **`.flake8`**: Flake8 linting configuration
+- **`.isort.cfg`**: Import sorting configuration
+- **`pytest.ini`**: Pytest test configuration with coverage settings
+
+### GitHub Secrets (for Docker Hub publishing)
+
+To enable Docker image publishing, add these secrets to your GitHub repository:
+
+- `DOCKER_USERNAME`: Your Docker Hub username
+- `DOCKER_PASSWORD`: Your Docker Hub password or access token
+
+---
+
+## 12. Key Features
 
 ### Deep Learning Contributions
 
@@ -466,7 +594,7 @@ This project demonstrates several important Deep Learning concepts:
 
 ---
 
-## 12. Results and Performance
+## 13. Results and Performance
 
 ### Model Performance
 
@@ -488,7 +616,7 @@ This project demonstrates several important Deep Learning concepts:
 
 ---
 
-## 13. Future Work
+## 14. Future Work
 
 ### Deep Learning Enhancements
 
@@ -524,7 +652,7 @@ This project demonstrates several important Deep Learning concepts:
 - Real-time streaming inference pipeline
 - Advanced visualization features
 
-## 14. Team Work Distribution
+## 15. Team Work Distribution
 
 Each team member is responsible for a specific pipeline stage:
 
@@ -538,7 +666,7 @@ Each team member is responsible for a specific pipeline stage:
 
 ---
 
-## 15. Conclusion
+## 16. Conclusion
 
 This project demonstrates that **sequence-based Deep Learning** can effectively detect anomalous behaviors in authentication logs, while remaining practical for SOC environments. The comprehensive analysis tools and visualizations make it easy to understand model behavior and validate Deep Learning advantages over traditional ML approaches.
 
@@ -554,7 +682,7 @@ The system follows a complete pipeline from log ingestion to automated alert gen
 
 ---
 
-## 16. Contact
+## 17. Contact
 
 Vu.DNH235629@sis.hust.edu.vn
 

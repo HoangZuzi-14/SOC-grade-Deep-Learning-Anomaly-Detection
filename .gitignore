@@ -10,3 +10,27 @@ model/check_checkpointA.py
 logdl311/
 .venv/
 venv/
+
+# CI/CD artifacts
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.bandit
+bandit-report.json
+.tox/
+dist/
+build/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

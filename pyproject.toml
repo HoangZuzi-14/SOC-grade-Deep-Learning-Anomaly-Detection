@@ -1,0 +1,57 @@
+[tool.black]
+line-length = 127
+target-version = ['py39', 'py310', 'py311']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | venv
+  | env
+  | build
+  | dist
+  | \.pytest_cache
+  | \.mypy_cache
+  | node_modules
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 127
+skip = ["venv", "env", ".venv", "build", "dist", "*.egg-info", "node_modules", ".pytest_cache", ".mypy_cache"]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+known_first_party = ["api", "model", "scoring", "parsing", "sequence", "evaluation", "baseline", "prioritization", "explainability", "streaming"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
+addopts = [
+    "-v",
+    "--strict-markers",
+    "--tb=short",
+    "--cov=.",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-exclude=tests/*",
+    "--cov-exclude=*/__pycache__/*",
+]
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests",
+    "api: API endpoint tests",
+    "model: Model tests",
+    "database: Database tests",
+    "slow: Slow running tests",
+]
+
+[tool.bandit]
+exclude_dirs = ["tests", "venv", ".venv", "env", "node_modules"]
+skips = ["B101", "B601"]  # Skip assert_used and shell_injection_subprocess
