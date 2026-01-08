@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  # API Backend Service
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: soc-anomaly-api
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount model and data directories
+      - ./model:/app/model:ro
+      - ./data:/app/data
+      - ./parsing:/app/parsing:ro
+      - ./scoring:/app/scoring:ro
+      - ./sequence:/app/sequence:ro
+      - ./evaluation:/app/evaluation:ro
+    environment:
+      - MODEL_PATH=/app/model/model.pth
+      - SCORES_PATH=/app/data/sequences/lstm_scores.pkl
+      - MAPPING_PATH=/app/data/sequences/event_mapping.json
+      - DEVICE=cpu
+      - DATABASE_URL=sqlite:///data/soc_anomaly.db
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - soc-network
+
+  # Frontend Dashboard Service
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    container_name: soc-anomaly-dashboard
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"] || ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    networks:
+      - soc-network
+
+  # PostgreSQL Database (Optional - for production)
+  # Uncomment if you want to use PostgreSQL instead of SQLite
+  # postgres:
+  #   image: postgres:15-alpine
+  #   container_name: soc-anomaly-db
+  #   environment:
+  #     - POSTGRES_DB=soc_anomaly
+  #     - POSTGRES_USER=soc_user
+  #     - POSTGRES_PASSWORD=soc_password
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   restart: unless-stopped
+  #   networks:
+  #     - soc-network
+
+networks:
+  soc-network:
+    driver: bridge
+
+# volumes:
+#   postgres_data:

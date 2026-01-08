@@ -52,7 +52,7 @@ class SlidingWindowDataset(Dataset):
 
 
 # Training Loop with Metrics Tracking
-def train(model, train_loader, val_loader, optimizer, criterion, device, epochs, save_dir):
+def train(model, train_loader, val_loader, test_loader, optimizer, criterion, device, epochs, save_dir):
     """
     Training loop with validation, metrics tracking, and visualization.
     """
@@ -168,6 +168,51 @@ def train(model, train_loader, val_loader, optimizer, criterion, device, epochs,
     # Plot training curves
     plot_training_curves(history, save_dir)
     
+    # Evaluate on test set
+    print("\n[*] Evaluating on test set...")
+    model.eval()
+    test_loss = 0.0
+    test_correct = 0
+    test_topk_correct = 0
+    test_total = 0
+    
+    with torch.no_grad():
+        for X, y in test_loader:
+            X = X.to(device)
+            y = y.to(device)
+            
+            logits = model(X)
+            loss = criterion(logits, y)
+            
+            test_loss += loss.item()
+            
+            # Calculate accuracy
+            _, predicted = torch.max(logits.data, 1)
+            test_total += y.size(0)
+            test_correct += (predicted == y).sum().item()
+            
+            # Top-k accuracy
+            _, topk_pred = torch.topk(logits, k=min(5, logits.size(1)), dim=1)
+            test_topk_correct += topk_pred.eq(y.view(-1, 1).expand_as(topk_pred)).sum().item()
+    
+    avg_test_loss = test_loss / len(test_loader)
+    test_acc = 100 * test_correct / test_total
+    test_topk_acc = 100 * test_topk_correct / test_total
+    
+    print(f"[+] Test Results:")
+    print(f"    Test Loss: {avg_test_loss:.4f}")
+    print(f"    Test Acc: {test_acc:.2f}%")
+    print(f"    Test Top-5 Acc: {test_topk_acc:.2f}%")
+    
+    # Add test metrics to history
+    history["test_loss"] = avg_test_loss
+    history["test_acc"] = test_acc
+    history["test_topk_acc"] = test_topk_acc
+    
+    # Save updated history
+    with open(os.path.join(save_dir, "training_history.json"), "w") as f:
+        json.dump(history, f, indent=2)
+    
     return history
 
 
@@ -245,8 +290,10 @@ if __name__ == "__main__":
                         help="Number of epochs")
     parser.add_argument("--lr", type=float, default=1e-3,
                         help="Learning rate")
-    parser.add_argument("--val_split", type=float, default=0.2,
+    parser.add_argument("--val_split", type=float, default=0.15,
                         help="Validation split ratio")
+    parser.add_argument("--test_split", type=float, default=0.15,
+                        help="Test split ratio")
     parser.add_argument("--device", type=str, default=None,
                         help="Device (cuda/cpu), auto-detect if None")
     parser.add_argument("--output_dir", type=str, default=".",
@@ -328,16 +375,24 @@ if __name__ == "__main__":
     dataset = SlidingWindowDataset(sequences, args.window_size)
     print(f"[+] Total samples: {len(dataset)}")
     
-    # Train/Val split
+    # Train/Val/Test split
+    test_size = int(len(dataset) * args.test_split)
     val_size = int(len(dataset) * args.val_split)
-    train_size = len(dataset) - val_size
-    train_dataset, val_dataset = torch.utils.data.random_split(
-        dataset, [train_size, val_size],
+    train_size = len(dataset) - val_size - test_size
+    
+    # Ensure we have enough data
+    if train_size < 1:
+        raise ValueError(f"Not enough data for train/val/test split. Total: {len(dataset)}, "
+                        f"Requested: train={train_size}, val={val_size}, test={test_size}")
+    
+    train_dataset, val_dataset, test_dataset = torch.utils.data.random_split(
+        dataset, [train_size, val_size, test_size],
         generator=torch.Generator().manual_seed(42)
     )
     
-    print(f"[+] Train samples: {len(train_dataset)}")
-    print(f"[+] Val samples  : {len(val_dataset)}")
+    print(f"[+] Train samples: {len(train_dataset)} ({len(train_dataset)/len(dataset)*100:.1f}%)")
+    print(f"[+] Val samples  : {len(val_dataset)} ({len(val_dataset)/len(dataset)*100:.1f}%)")
+    print(f"[+] Test samples : {len(test_dataset)} ({len(test_dataset)/len(dataset)*100:.1f}%)")
     
     # DataLoaders
     train_loader = DataLoader(
@@ -350,6 +405,14 @@ if __name__ == "__main__":
     
     val_loader = DataLoader(
         val_dataset,
+        batch_size=args.batch_size,
+        shuffle=False,
+        drop_last=False,
+        num_workers=0
+    )
+    
+    test_loader = DataLoader(
+        test_dataset,
         batch_size=args.batch_size,
         shuffle=False,
         drop_last=False,
@@ -385,6 +448,7 @@ if __name__ == "__main__":
         model=model,
         train_loader=train_loader,
         val_loader=val_loader,
+        test_loader=test_loader,
         optimizer=optimizer,
         criterion=criterion,
         device=DEVICE,
@@ -415,5 +479,5 @@ if __name__ == "__main__":
     print(f"[+] Best model saved: {os.path.join(output_dir, 'best_model.pth')}")
     print(f"[+] Training history: {os.path.join(output_dir, 'training_history.json')}")
     print(f"[+] Final metrics:")
-    print(f"    Train Loss: {history['train_loss'][-1]:.4f} | Val Loss: {history['val_loss'][-1]:.4f}")
-    print(f"    Train Acc: {history['train_acc'][-1]:.2f}% | Val Acc: {history['val_acc'][-1]:.2f}%")
+    print(f"    Train Loss: {history['train_loss'][-1]:.4f} | Val Loss: {history['val_loss'][-1]:.4f} | Test Loss: {history.get('test_loss', 0):.4f}")
+    print(f"    Train Acc: {history['train_acc'][-1]:.2f}% | Val Acc: {history['val_acc'][-1]:.2f}% | Test Acc: {history.get('test_acc', 0):.2f}%")

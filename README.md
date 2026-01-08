@@ -22,13 +22,13 @@ To ensure feasibility within limited time, the project focuses on **a single log
 
 ## 3. System Pipeline
 
-The system follows a complete pipeline from raw log ingestion to automated alert generation:
+The system follows a complete pipeline from raw log ingestion to production deployment:
 
 ```
-Raw Logs → Parse → Sequence → Model → Score → Alert
+Raw Logs → Parse → Sequence → Model → Score → Alert → API → Dashboard → Database → Docker → Streaming → Prioritization
 ```
 
-### Pipeline Phases
+### Core Pipeline Phases
 
 1. **Log Ingestion**: Collect and preprocess raw log data from various sources (e.g., auth.log, system.log)
 2. **Parse**: Log template extraction using Drain3 parser to normalize and reduce data size
@@ -36,6 +36,15 @@ Raw Logs → Parse → Sequence → Model → Score → Alert
 4. **Model**: Deep Learning model (LSTM-based DeepLog) training and inference
 5. **Score**: Anomaly score computation using negative log-likelihood
 6. **Alert**: Automated alert generation with severity classification (NONE, LOW, MED, HIGH)
+
+### System Integration Phases
+
+7. **API Integration**: REST API for inference, alerts, and logs management (FastAPI)
+8. **Web Dashboard**: Real-time monitoring interface for SOC analysts (React)
+9. **Database**: Persistent storage for logs, alerts, and scores (SQLite/PostgreSQL)
+10. **Docker**: Containerization for easy deployment and scaling
+11. **Streaming**: Real-time log processing pipeline for production
+12. **Prioritization**: Intelligent alert prioritization and ranking system
 
 ---
 
@@ -81,9 +90,29 @@ soc-log-anomaly/
 ├── demo/
 │   └── app.py               # Interactive demo application
 │
+├── api/
+│   ├── main.py              # FastAPI application
+│   ├── database.py          # Database models and connection
+│   ├── database_init.py     # Database initialization
+│   ├── prioritization_routes.py  # Alert prioritization API
+│   ├── streaming_routes.py  # Real-time streaming API
+│   └── explainability_routes.py  # Model explainability API
+│
+├── dashboard/
+│   ├── src/                 # React frontend source
+│   │   ├── components/     # Dashboard components
+│   │   └── services/        # API services
+│   └── package.json         # Node.js dependencies
+│
+├── prioritization/
+│   └── priority_calculator.py  # Alert prioritization engine
+│
 ├── notebook/
 │   └── analysis.ipynb       # Comprehensive pipeline analysis notebook
 │
+├── docker-compose.yml       # Docker Compose configuration
+├── Dockerfile.api           # API container Dockerfile
+├── Dockerfile.dashboard     # Dashboard container Dockerfile
 ├── requirements.txt
 └── README.md
 ```
@@ -123,14 +152,16 @@ The model is trained using:
 - **Loss Function**: Cross-Entropy Loss
 - **Optimizer**: Adam (learning rate: 1e-3)
 - **Training Strategy**: 
-  - Train/Validation split (default: 80/20)
+  - **Train/Validation/Test split** (default: 70/15/15)
   - Sliding window approach for sequence generation
   - Batch training with configurable batch size
+  - Separate test set evaluation after training completion
 - **Metrics Tracked**:
-  - Training & Validation Loss
-  - Top-1 Accuracy
-  - Top-k Accuracy (k=5)
-  - Training curves visualization
+  - Training & Validation Loss (per epoch)
+  - Test Loss (evaluated once after training)
+  - Top-1 Accuracy (Train/Val/Test)
+  - Top-k Accuracy (k=5) (Train/Val/Test)
+  - Training curves visualization with test metrics
 
 #### Anomaly Detection Mechanism
 
@@ -177,10 +208,11 @@ The project includes comprehensive Deep Learning analysis tools:
 ### Model Performance Metrics
 
 - **Training Metrics**:
-  - Loss (Cross-Entropy)
-  - Top-1 Accuracy
-  - Top-k Accuracy (k=5)
-  - Training/Validation split performance
+  - Loss (Cross-Entropy) - Train/Val/Test
+  - Top-1 Accuracy - Train/Val/Test
+  - Top-k Accuracy (k=5) - Train/Val/Test
+  - Training/Validation/Test split performance
+  - Generalization assessment via test set
 
 - **Anomaly Detection Metrics**:
   - **Perplexity**: Model uncertainty measure (exp(mean(NLL)))
@@ -232,8 +264,10 @@ The `notebook/analysis.ipynb` provides comprehensive pipeline analysis following
    - Detailed model summary
    - Parameter counting
    - Training performance visualization
-   - Training/validation loss curves
-   - Accuracy progression
+   - Training/validation/test loss curves
+   - Accuracy progression (Train/Val/Test)
+   - Top-k accuracy comparison
+   - Loss comparison chart with test metrics
 
 5. **Phase 5: Score**
    - Anomaly score statistics
@@ -249,11 +283,44 @@ The `notebook/analysis.ipynb` provides comprehensive pipeline analysis following
    - Model comparison (LSTM vs Isolation Forest)
    - Case studies of high anomaly sequences
 
-7. **Conclusions and Future Directions**
-   - Pipeline performance summary
-   - Key findings and observations
-   - Strengths and areas for improvement
-   - Future work directions
+7. **Phase 7: API Integration**
+   - REST API endpoints for inference and alert management
+   - FastAPI implementation
+   - API usage examples and documentation
+   - Prioritization API endpoints
+
+8. **Phase 8: Web Dashboard**
+   - Real-time monitoring interface
+   - Interactive visualizations
+   - Alert management UI
+   - Log sequence testing interface
+
+9. **Phase 9: Database Integration**
+   - Database schema and models
+   - SQLite and PostgreSQL support
+   - Data persistence for logs, alerts, and scores
+
+10. **Phase 10: Docker Containerization**
+    - Docker Compose configuration
+    - Containerized API and Dashboard
+    - Production deployment setup
+
+11. **Phase 11: Streaming Pipeline**
+    - Real-time log processing
+    - WebSocket support for live updates
+    - Stream processing architecture
+
+12. **Phase 12: Alert Prioritization**
+    - Multi-factor prioritization logic
+    - Priority ranks (CRITICAL, HIGH, MEDIUM, LOW, INFO)
+    - Prioritization API and usage
+
+13. **Conclusions and Future Directions**
+    - Complete system overview
+    - Pipeline performance summary
+    - Key findings and observations
+    - Strengths and areas for improvement
+    - Future work directions
 
 ---
 
@@ -320,9 +387,12 @@ python train.py \
     --batch_size 64 \
     --epochs 10 \
     --lr 1e-3 \
-    --val_split 0.2 \
+    --val_split 0.15 \
+    --test_split 0.15 \
     --output_dir .
 ```
+
+**Note:** The model now includes a separate test set evaluation. After training, test metrics (test_loss, test_acc, test_topk_acc) are automatically computed and saved to `training_history.json`.
 
 #### Step 5: Anomaly Scoring
 
@@ -437,12 +507,22 @@ This project demonstrates several important Deep Learning concepts:
 - Interactive dashboard for SOC analysts
 - Alert prioritization based on context and historical patterns
 
-### TO-DO works
+### Completed Enhancements
+
+- ✅ **Test Set Evaluation**: Separate test set for unbiased model evaluation
+- ✅ **Interactive Web Dashboard**: Real-time monitoring with React
+- ✅ **REST API**: FastAPI endpoints for inference and alert management
+- ✅ **Database Integration**: SQLite/PostgreSQL for persistent storage
+- ✅ **Docker Containerization**: Easy deployment with Docker Compose
+- ✅ **Alert Prioritization**: Multi-factor prioritization logic
+- ✅ **CI/CD Pipeline**: GitHub Actions for automated testing
+
+### Future Enhancements
 
 - Multi-log source support
-- Interactive web dashboard
-- Alert prioritization logic
 - Model explainability improvements (SHAP/LIME)
+- Real-time streaming inference pipeline
+- Advanced visualization features
 
 ## 14. Team Work Distribution
 
